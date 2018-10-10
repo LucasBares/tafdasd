@@ -6,11 +6,12 @@ namespace ConsoleApp1
 {
     class FacebookOpen : BaseComponents
     {
+        public BaseComponents salir = new BaseComponents();
         [Test]
         public void OpenFacebook()
         {
-            Utils.BaseComponents.Equal
             driver.Url = "https://www.google.com";
+            salir.Exit();
         }
 
     }
