@@ -12,7 +12,7 @@ namespace ConsoleApp1
         [SetUp]
         public void Inicializate()
         {
-            Collection.driver = new ChromeDriver(@"C:\Users\Lucas\source\repos\Automation-Repo\ConsoleApp1");
+            Collection.driver = new ChromeDriver(@"C:\Users\lucas.mazzini\source\repos\ConsoleApp1\ConsoleApp1");
         }
 
         [Test]
