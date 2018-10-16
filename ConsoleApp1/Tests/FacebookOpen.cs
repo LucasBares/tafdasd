@@ -1,45 +1,43 @@
 ﻿using OpenQA.Selenium;
 using NUnit.Framework;
+using OpenQA.Selenium.Chrome;
 using ConsoleApp1.Utils;
 using System;
+using OpenQA.Selenium.Support;
 
 namespace ConsoleApp1
 {
     class FacebookOpen : BaseComponents
     {
-        public BaseComponents utils = new BaseComponents();
+
+  
+        [SetUp]
+        public void Inicializate()
+        {
+            Collection.driver = new ChromeDriver(@"C:\Users\Lucas\source\repos\Automation-Repo\ConsoleApp1");
+        }
 
         [Test]
         public void OpenFacebook()
         {
-            driver.Url = "https://www.google.com";
+            Collection.driver.Url = "https://www.google.com";
 
-            driver.FindElement(By.Name("q")).SendKeys("Facebook");
-            driver.FindElement(By.XPath("//*[@id='tsf']/div[2]/div[3]/center/input[1]")).Click();
+            SearchObject search = new SearchObject();
 
-            string Title = driver.Title;
+            search.SearchBox.SendKeys("Facebook");
+            search.SearchBox.SendKeys(Keys.Enter);
 
-            if(Title == "Facebook - Buscar con Google")
-            {
-                var FUrl = driver.FindElement(By.XPath("//*[@id='rso']/div/div/div/div/div/div/a/div/cite")).Text;
-                driver.Url = FUrl;
-                if(Title == "Facebook - Inicia sesión o regístrate")
-                {
-                    Console.WriteLine("The test was successfull");
-                }
-                else
-                {
-                    Console.WriteLine("The test failed");
-                }
-            }
-            else
-            {
-                Console.WriteLine("Page not found");
-            }
-            
+            string Title = Collection.driver.Title;
 
+            var FUrl = Collection.driver.FindElement(By.ClassName("iUh30")).Text;
 
-            utils.Exit();
+            Collection.driver.Url = FUrl;
+
+            FacebookObject page = new FacebookObject();
+
+            page.Login("username","password");
+
+            Exit();
         }
 
     }
