@@ -9,8 +9,6 @@ namespace ConsoleApp1
 {
     class FacebookOpen : BaseComponents
     {
-
-  
         [SetUp]
         public void Inicializate()
         {
@@ -39,6 +37,5 @@ namespace ConsoleApp1
 
             Exit();
         }
-
     }
 }
